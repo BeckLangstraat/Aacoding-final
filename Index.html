@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<title>CodePen - AACoding04-6</title>
+<style>
+body{
+  background-color: purple;
+}
+
+.correct{
+  background:green;
+}
+
+.incorrect{
+  background:red;
+}
+</style>
+</head>
+<body translate="no">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<audio id="sad">
+<source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
+Your browser does not support the audio tag
+</audio>
+<audio id="ding">
+<source src="https://raw.githubusercontent.com/BeckLangstraat/aacoding6-6/master/Ding%20-%20Sound%20Effect%20%5BHD%5D%20(2).mp3" type="audio/mpeg">
+Your browser does not support the audio tag
+</audio>
+<h1>Becks's Awesome Math Problems</h1>
+<div>Timer: <span id="theTime">0</span> Score: <span id="score">0</span></div>
+<ol>
+<li>\( 2^3 \) <input data-correct="8" /> </li>
+<li>\( \sqrt[3]{8} \) <input data-correct="2" /></li>
+<li>\( 8^\frac{1}{3} \) <input data-correct="2" /></li>
+<li>\( (\frac{-125}{27})^\tfrac{-2}{3} \) <input data-correct="9/25" /></li>
+<li>\( 2^3 \) <input data-correct="8" /> </li>
+<li>\( \sqrt[3]{8} \) <input data-correct="2" /></li>
+<li>\( 64^\frac{1}{3} \) <input data-correct="4" /></li>
+<li>\( 8^\frac{1}{3} \) <input data-correct="2" /></li>
+<li>\( \sqrt[]{25} \) <input data-correct="5" /></li>
+<li>\( \sqrt[3]{125} \) <input data-correct="5" /></li>
+<li>\( 5^4 \) <input data-correct="625" /> </li>
+<li>\( 125^\frac{1}{3} \) <input data-correct="5" /></li>
+<li>\( \sqrt[]{16} \) <input data-correct="4" /></li>
+<li>\( \sqrt[3]{64} \) <input data-correct="4" /></li>
+
+</ol>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script id="rendered-js">
+console.clear();
+const sad = document.getElementById("sad");
+const ding = document.getElementById("ding");
+
+setInterval(upTime, 1000);
+
+function upTime() {
+  let theTime = Number($("#theTime").text());
+  theTime = theTime + 1;
+  $("#theTime").text(theTime);
+}
+$("input").change(onChange);
+
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let response = $(this).val();
+
+  if (correct == response) {
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+    let theScore = Number($("#score").text());
+    theScore = theScore + 1;
+ 
+      ding.play();
+    
+    $("#score").text(theScore);
+  } else {
+    if (Math.random() > 0.1) {
+      sad.play();
+    }
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
+  }
+}
+    </script>
+</body>
+</html>
